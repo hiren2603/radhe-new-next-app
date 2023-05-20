@@ -26,7 +26,7 @@ export const menuList = [
   {
     key: "Products",
     link: "/products",
-    icon: <ProductSvg />,
+    icon: <HomeIcon />,
     id: 3,
     multicomponent: true,
     multicomponents: [

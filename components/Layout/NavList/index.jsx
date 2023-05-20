@@ -1,44 +1,58 @@
-import React from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
 import { List } from "@mui/material";
-import { theme } from "@/theme";
+import { useRouter } from "next/router";
 
-import NavListItem from "../NavListItem";
 import { menuList } from "@/helpers/menuList";
-import ProductListItem from "../ProductListItem";
-import ModalListItem from "../ModalListItem";
+import MultiComponent from "../MultiComponent";
+import ItemComponent from "../ItemComponent";
 
-const NavList = ({ open, closeSideBar }) => {
+const NavList = ({
+  open,
+  closeSideBar,
+  openCategory,
+  openSubCategory,
+  handleCategory,
+  handleSubCategory,
+}) => {
   const router = useRouter();
   const handleNavigatiion = (linkText) => {
-    router.push(`/${linkText}`);
+    router.push(`${linkText}`);
   };
+
   return (
-    <List>
-      {menuList.map((item) => {
-        !item.multicomponent ? (
-          <NavListItem item={item} open={open} closeSideBar={closeSideBar} />
-        ) : (
-          <NavListItem item={item} closeSideBar={closeSideBar}>
-            {item.multicomponents.map((product) => {
-              !product.nestedcomponent ? (
-                <ProductListItem item={product} closeSideBar={closeSideBar} />
-              ) : (
-                <ProductListItem>
-                  {product.nestedcomponents.map((subproduct) => {
-                    <ModalListItem
-                      item={subproduct}
-                      closeSideBar={closeSideBar}
-                    />;
-                  })}
-                </ProductListItem>
-              );
-            })}
-          </NavListItem>
-        );
-      })}
-    </List>
+    <>
+      <List>
+        {menuList?.map((item) => {
+          if (item.multicomponent) {
+            return (
+              <>
+                <MultiComponent
+                  key={item.key}
+                  open={open}
+                  item={item}
+                  openCategory={openCategory}
+                  openSubcategory={openSubCategory}
+                  handleSubCategory={handleSubCategory}
+                  closeSideBar={closeSideBar}
+                  handleCategory={handleCategory}
+                />
+              </>
+            );
+          } else {
+            return (
+              <>
+                <ItemComponent
+                  key={item.key}
+                  open={open}
+                  item={item}
+                  closeSideBar={closeSideBar}
+                  handleNavigatiion={handleNavigatiion}
+                />
+              </>
+            );
+          }
+        })}
+      </List>
+    </>
   );
 };
 

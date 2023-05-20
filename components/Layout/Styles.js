@@ -1,6 +1,11 @@
 export const listIconStyle = {
   minWidth: 0,
   justifyContent: "center",
+  color: "white",
+};
+
+export const listItemText = {
+  color: "white",
 };
 
 export const listButtonStyle = {

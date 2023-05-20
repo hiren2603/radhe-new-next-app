@@ -8,7 +8,16 @@ import { useState, useEffect } from "react";
 import { menuList } from "@/helpers/menuList";
 import NavList from "../NavList";
 
-const Sidebar = ({ open, drawerwidth, closeSideBar, handleDrawerOpen }) => {
+const Sidebar = ({
+  open,
+  drawerwidth,
+  closeSideBar,
+  handleDrawerOpen,
+  handleCategory,
+  handleSubCategory,
+  openCategory,
+  openSubCategory,
+}) => {
   const openedMixin = (theme) => ({
     width: drawerwidth,
     backgroundColor: theme.palette.error.main,
@@ -92,7 +101,14 @@ const Sidebar = ({ open, drawerwidth, closeSideBar, handleDrawerOpen }) => {
           </DrawerHeader>
           <Divider />
           <Box onKeyDown={closeSideBar}>
-            <NavList open={open} closeSideBar={closeSideBar} />
+            <NavList
+              open={open}
+              closeSideBar={closeSideBar}
+              openCategory={openCategory}
+              openSubCategory={openSubCategory}
+              handleCategory={handleCategory}
+              handleSubCategory={handleSubCategory}
+            />
           </Box>
         </Drawer>
       </ClickAwayListener>

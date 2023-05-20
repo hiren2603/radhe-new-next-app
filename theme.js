@@ -42,4 +42,12 @@ export const theme = createTheme({
       },
     },
   },
+  breakpoints: {
+    values: {
+      xs: 350,
+      sm: 550,
+      md: 808,
+      lg: 1200,
+    },
+  },
 });
