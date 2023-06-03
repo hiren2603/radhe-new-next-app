@@ -2,11 +2,17 @@ import MuiDrawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Stack, ClickAwayListener, Divider, IconButton } from "@mui/material";
+import {
+  Stack,
+  ClickAwayListener,
+  Divider,
+  IconButton,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Box from "@mui/material/Box";
-import { useState, useEffect } from "react";
-import { menuList } from "@/helpers/menuList";
 import NavList from "../NavList";
+import ResSidebar from "../ResSidebar";
 
 const Sidebar = ({
   open,
@@ -18,6 +24,8 @@ const Sidebar = ({
   openCategory,
   openSubCategory,
 }) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const openedMixin = (theme) => ({
     width: drawerwidth,
     backgroundColor: theme.palette.error.main,
@@ -77,40 +85,56 @@ const Sidebar = ({
   return (
     <Box sx={{ display: "flex" }} onKeyDown={closeSideBar}>
       <ClickAwayListener onClickAway={closeSideBar}>
-        <Drawer
-          variant="permanent"
-          open={open}
-          PaperProps={{
-            elevation: 10,
-          }}
-        >
-          <DrawerHeader>
-            {open ? (
-              <Stack>
-                <IconButton onClick={closeSideBar}>
-                  <KeyboardDoubleArrowLeftIcon sx={{ color: "#fff" }} />
-                </IconButton>
-              </Stack>
-            ) : (
-              <Stack>
-                <IconButton onClick={handleDrawerOpen}>
-                  <MenuIcon sx={{ color: "#fff" }} />
-                </IconButton>
-              </Stack>
-            )}
-          </DrawerHeader>
-          <Divider />
-          <Box onKeyDown={closeSideBar}>
-            <NavList
+        {isSmallScreen ? (
+          <>
+            <ResSidebar
               open={open}
               closeSideBar={closeSideBar}
-              openCategory={openCategory}
-              openSubCategory={openSubCategory}
+              handleDrawerOpen={handleDrawerOpen}
               handleCategory={handleCategory}
               handleSubCategory={handleSubCategory}
+              openCategory={openCategory}
+              openSubCategory={openSubCategory}
             />
-          </Box>
-        </Drawer>
+          </>
+        ) : (
+          <>
+            <Drawer
+              variant={"permanent"}
+              open={open}
+              PaperProps={{
+                elevation: 10,
+              }}
+            >
+              <DrawerHeader>
+                {open ? (
+                  <Stack>
+                    <IconButton onClick={closeSideBar}>
+                      <KeyboardDoubleArrowLeftIcon sx={{ color: "#fff" }} />
+                    </IconButton>
+                  </Stack>
+                ) : (
+                  <Stack>
+                    <IconButton onClick={handleDrawerOpen}>
+                      <MenuIcon sx={{ color: "#fff" }} />
+                    </IconButton>
+                  </Stack>
+                )}
+              </DrawerHeader>
+              <Divider />
+              <Box onKeyDown={closeSideBar}>
+                <NavList
+                  open={open}
+                  closeSideBar={closeSideBar}
+                  openCategory={openCategory}
+                  openSubCategory={openSubCategory}
+                  handleCategory={handleCategory}
+                  handleSubCategory={handleSubCategory}
+                />
+              </Box>
+            </Drawer>
+          </>
+        )}
       </ClickAwayListener>
     </Box>
   );

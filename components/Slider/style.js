@@ -3,9 +3,9 @@ export const sliderWrapper = {
   alignItems: "center",
   justifyContent: "space-between",
   height: "100vh",
-  width: "100%",
   backgroundColor: "rgb(255, 248, 248)",
   transition: "all 2s ease",
+  // width: "100%",
 };
 
 export const leftIconContainer = {
@@ -20,9 +20,8 @@ export const leftIconContainer = {
   boxShadow: "2px 0px 2px 2px rgba(0, 0, 0, 0.747)",
   transition: "all 0.5s ease",
   position: "absolute",
-  justifySelf: "flex-start",
   padding: "10px",
-  left: "10px",
+  left: "70px",
   "&:hover": { opacity: 1 },
 };
 
@@ -33,7 +32,7 @@ export const imageContainer = {
   width: "100%",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center center",
-  backgroundSize: "cover",
+  // backgroundSize: "cover",
   transition: "all 2s ease",
   backgroundColor: "#00000080",
   backgroundBlendMode: "overlay",
@@ -47,11 +46,23 @@ export const imageContainerHidden = {
 };
 
 export const imageTitle = {
-  fontSize: "90px",
   textTransform: "uppercase",
   color: "#f31f25",
   textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)",
-  fontWeight: 900,
+  fontWeight: "900",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  fontSize: { sm: "20px", md: "60px", lg: "90px" },
+};
+
+export const slideContainer = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "100%",
+  height: "50%",
 };
 
 export const slideImage = {
@@ -62,8 +73,9 @@ export const imgInfo = {
   textTransform: "uppercase",
   color: "white",
   textShadow: "4px 2px 2px  rgba(255, 0, 0, 0.781)",
-  fontWeight: 900,
-  fontSize: "90px",
+  fontWeight: "900",
+  paddingRight: "5px",
+  fontSize: { sm: "20px", md: "60px", lg: "90px" },
 };
 
 export const rightIconContainer = {

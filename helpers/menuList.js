@@ -52,7 +52,7 @@ export const menuList = [
           },
           {
             key: "RE224",
-            link: "/products/inkjet/re225",
+            link: "/products/inkjet/re224",
             icon: <ProductSvg />,
             id: 15,
           },
@@ -68,25 +68,25 @@ export const menuList = [
         nestedcomponents: [
           {
             key: "CO2 Laser",
-            link: "/products/inkjet/co2",
+            link: "/products/laser/co2",
             icon: <ProductSvg />,
             id: 9,
           },
           {
             key: "Fiber Laser",
-            link: "/products/inkjet/co2",
+            link: "/products/laser/fiber",
             icon: <ProductSvg />,
             id: 10,
           },
           {
             key: "UV Laser",
-            link: "/products/inkjet/uv",
+            link: "/products/laser/uv",
             icon: <ProductSvg />,
             id: 11,
           },
           {
             key: "Desktop Laser",
-            link: "/products/inkjet/desktop",
+            link: "/products/laser/desktop",
             icon: <ProductSvg />,
             id: 12,
           },
@@ -102,19 +102,19 @@ export const menuList = [
         nestedcomponents: [
           {
             key: "TP 01",
-            link: "/products/inkjet/tp01",
+            link: "/products/tij/tp01",
             icon: <ProductSvg />,
             id: 16,
           },
           {
             key: "TP 01.1",
-            link: "/products/inkjet/tp01.1",
+            link: "/products/tij/tp01.1",
             icon: <ProductSvg />,
             id: 17,
           },
           {
             key: "TP Handy",
-            link: "/products/inkjet/handy",
+            link: "/products/tij/handy",
             icon: <ProductSvg />,
             id: 18,
           },

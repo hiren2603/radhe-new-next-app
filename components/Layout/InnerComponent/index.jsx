@@ -10,7 +10,8 @@ const InnerComponent = ({ item, handleNavigatiion }) => {
             sx={{
               "&:hover": {
                 background: "linear-gradient(145deg, #E31E25, #E31E25);",
-                boxShadow: "inset 0px 0px 0px black, inset 0px 0px 9px black",
+                webkitBoxShadow:
+                  "inset 0px 0px 0px black, inset 0px 0px 9px black",
                 transition: "0.2s ease-in-out",
                 transform: "scale(1.1)",
               },

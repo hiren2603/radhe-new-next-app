@@ -34,6 +34,7 @@ const NavList = ({
                   handleSubCategory={handleSubCategory}
                   closeSideBar={closeSideBar}
                   handleCategory={handleCategory}
+                  handleNavigatiion={handleNavigatiion}
                 />
               </>
             );

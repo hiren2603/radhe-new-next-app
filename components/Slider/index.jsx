@@ -1,33 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useKeenSlider } from "keen-slider/react";
+import { useState, useRef, useEffect } from "react";
 import { slideItems } from "@/helpers/slideItems";
-import Image from "next/image";
-import { Box, Typography } from "@mui/material";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { Box, Typography, useTheme } from "@mui/material";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import {
   sliderWrapper,
   leftIconContainer,
+  rightIconContainer,
   imageContainer,
   imageContainerHidden,
   imageTitle,
-  slideImage,
   imgInfo,
-  rightIconContainer,
+  slideContainer,
 } from "./style";
 
 const delay = 2500;
-const Slider = () => {
-  const length = slideItems.length - 1;
+const ProductSlider = () => {
+  const length = 2;
+  const theme = useTheme();
   const [slideIdx, setSlideIdx] = useState(0);
   const timeoutRef = useRef(null);
 
-  const resestTimeout = () => {
+  const resetTimeout = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
   useEffect(() => {
-    resestTimeout();
+    resetTimeout();
+
     timeoutRef.current = setTimeout(
       () =>
         setSlideIdx((prevSlideIdx) =>
@@ -37,18 +36,18 @@ const Slider = () => {
     );
 
     return () => {
-      resestTimeout();
+      resetTimeout();
     };
   }, [slideIdx, length]);
 
   const nextSlide = () => {
     if (slideIdx === length) {
       setSlideIdx(0);
+      console.log(slideIdx);
     } else {
       setSlideIdx(slideIdx + 1);
     }
   };
-
   const prevSlide = () => {
     if (slideIdx === 0) {
       setSlideIdx(length);
@@ -57,34 +56,47 @@ const Slider = () => {
     }
   };
   return (
-    <>
-      <Box sx={sliderWrapper}>
-        <Box sx={leftIconContainer} onClick={prevSlide}>
-          <ChevronLeftIcon />
-        </Box>
-
-        {slideItems.map((slide, idx) => (
-          <>
-            <Box
-              sx={idx === slideIdx ? imageContainer : imageContainerHidden}
-              key={idx}
-            >
-              <Box>{slide.image}</Box>
-
-              <h1 className={imageTitle}>
-                {slide.title}
-                <Typography sx={imgInfo}>{slide.info}</Typography>
-              </h1>
-            </Box>
-          </>
-        ))}
-
-        <Box sx={rightIconContainer} onClick={nextSlide}>
-          <ChevronRightIcon />
-        </Box>
+    <Box
+      sx={{
+        ...sliderWrapper,
+        width: `calc(100% - (${theme.spacing(8)} + 1px))`,
+        border: "3px solid black",
+      }}
+    >
+      <Box sx={leftIconContainer} onClick={prevSlide}>
+        <ChevronLeft />
       </Box>
-    </>
+      {slideItems.map((slide) => (
+        <>
+          <Box
+            key={slide.id}
+            sx={{
+              ...(slide.id === slideIdx
+                ? imageContainer
+                : imageContainerHidden),
+              backgroundImage: `url(${slide.bg})`,
+            }}
+          >
+            <Typography
+              // variant={{ lg: "h3", md: "h4", sm: "h5" }}
+              sx={imageTitle}
+            >
+              {slide.title}
+              <Typography
+                variant={{ lg: "h3", md: "h4", sm: "h5" }}
+                sx={imgInfo}
+              >
+                {slide.info}
+              </Typography>
+            </Typography>
+          </Box>
+        </>
+      ))}
+
+      <Box sx={rightIconContainer} onClick={nextSlide}>
+        <ChevronRight />
+      </Box>
+    </Box>
   );
 };
-
-export default Slider;
+export default ProductSlider;

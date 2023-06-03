@@ -5,8 +5,13 @@ import Slider from "@/components/Slider";
 const HomePage = () => {
   return (
     <div>
-      <CustomCard cardsData={cardsData} />
-      <Slider />
+      {/* <CustomCard cardsData={cardsData} />
+      <Slider /> */}
+      <ProductSlider />
+      <ProductCard />
+      <Info />
+      <Brands />
+      <Form />
     </div>
   );
 };
